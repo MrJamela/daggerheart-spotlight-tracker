@@ -24,22 +24,13 @@ Hooks.on('createChatMessage', async (message, options, userId) => {
   // Only run for GMs
   if (!game.user.isGM) return;
   
-  console.log('🟢 SPOTLIGHT: createChatMessage fired - Type:', message.type);
-  
   // Check if this is a duality roll (not a reaction)
-  // Daggerheart uses type: "dualityRoll" for action rolls
   if (message.type === 'dualityRoll') {
-    console.log('✅ SPOTLIGHT: Duality roll detected!');
-    
     // Get the actor who made the roll
     const actorId = message.speaker?.actor;
     const actor = actorId ? game.actors.get(actorId) : null;
     
-    console.log('Actor ID:', actorId, '| Actor:', actor?.name);
-    
     if (actor && actor.type === 'character' && actor.hasPlayerOwner) {
-      console.log(`🌟 SPOTLIGHT: Auto-incrementing for ${actor.name}`);
-      
       // Increment the spotlight count
       const counts = game.settings.get('daggerheart-spotlight-tracker', 'spotlightCounts');
       counts[actor.id] = (counts[actor.id] || 0) + 1;
@@ -53,8 +44,6 @@ Hooks.on('createChatMessage', async (message, options, userId) => {
       if (trackerApp) {
         trackerApp.render();
       }
-    } else {
-      console.log('⚠️ SPOTLIGHT: Not a player character');
     }
   }
 });// ========================================
@@ -108,20 +97,13 @@ Hooks.once('init', async function() {
 
 // Setup when Foundry is ready
 Hooks.once('ready', function() {
-  console.log('Daggerheart Spotlight Tracker | Ready');
+  console.log('Daggerheart Spotlight Tracker | Module loaded');
   
   // Only show notification for GMs
-  if (!game.user.isGM) {
-    console.log('Daggerheart Spotlight Tracker | User is not GM');
-    return;
-  }
-  
-  // Test if hooks are working
-  console.log('Daggerheart Spotlight Tracker | Testing if createChatMessage hook is registered...');
-  console.log('Daggerheart Spotlight Tracker | Registered hooks:', Hooks.events.createChatMessage);
+  if (!game.user.isGM) return;
   
   // Show a notification about how to open it
-  ui.notifications.info('Spotlight Tracker loaded! Use macro or press Shift+T to open.');
+  ui.notifications.info('Spotlight Tracker loaded! Press Shift+T to open.');
 });
 
 // SPOTLIGHT TRACKER WINDOW CLASS
@@ -143,8 +125,6 @@ class SpotlightTracker extends Application {
   
   // Prepare data to send to the template
   getData() {
-    console.log('Daggerheart Spotlight Tracker | Getting data for window');
-    
     // Get all player-owned characters whose players are currently online
     const characters = game.actors.filter(actor => {
       // Must be a character type
@@ -160,8 +140,6 @@ class SpotlightTracker extends Application {
       
       return hasActivePlayer;
     });
-    
-    console.log('Daggerheart Spotlight Tracker | Found active characters:', characters.length);
     
     // Get saved spotlight counts
     const counts = game.settings.get('daggerheart-spotlight-tracker', 'spotlightCounts');
@@ -187,8 +165,6 @@ class SpotlightTracker extends Application {
   activateListeners(html) {
     super.activateListeners(html);
     
-    console.log('Daggerheart Spotlight Tracker | Activating listeners');
-    
     // Increment button clicked
     html.find('.increment-spotlight').on('click', async (event) => {
       const characterId = $(event.currentTarget).data('character-id');
@@ -203,7 +179,6 @@ class SpotlightTracker extends Application {
     
     // Refresh list button clicked
     html.find('.refresh-list').on('click', () => {
-      console.log('Daggerheart Spotlight Tracker | Refreshing character list');
       ui.notifications.info('Character list refreshed');
       this.render();
     });
