@@ -5,6 +5,21 @@ All notable changes to the Daggerheart Spotlight Tracker module will be document
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.0.1] - 2025-01-23
+
+### Changed
+- Removed excessive debug logging from console output
+- Simplified module load message
+- Cleaned up verbose console chatter for production release
+
+### Technical Details
+- Removed emoji debugging logs (🟢🟡🌟✅)
+- Removed detailed hook firing messages
+- Kept only essential load confirmation message
+- No functional changes to module behavior
+
 ## [1.0.0] - 2025-01-23
 
 ### Added
@@ -30,4 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Filters by `message.type === 'dualityRoll'`
 - Stores data in world settings (persistent)
 
-[1.0.0]: https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/tag/1.0.0
+[Unreleased]: https://github.com/MrJamela/daggerheart-spotlight-tracker/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/MrJamela/daggerheart-spotlight-tracker/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/tag/v1.0.0
