@@ -30,4 +30,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Filters by `message.type === 'dualityRoll'`
 - Stores data in world settings (persistent)
 
-[1.0.0]: https://github.com/yourusername/daggerheart-spotlight-tracker/releases/tag/1.0.0
+[1.0.0]: https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/tag/1.0.0
