@@ -120,8 +120,8 @@ Potential future features:
 
 ## Support
 
-- **Issues**: [Report bugs or request features](https://github.com/yourusername/daggerheart-spotlight-tracker/issues)
-- **Discussions**: [Join the discussion](https://github.com/yourusername/daggerheart-spotlight-tracker/discussions)
+- **Issues**: [Report bugs or request features](https://github.com/MrJamela/daggerheart-spotlight-tracker/issues)
+- **Discussions**: [Join the discussion](https://github.com/MrJamela/daggerheart-spotlight-tracker/discussions)
 
 ## Contributing
 
