@@ -2,7 +2,7 @@
   "id": "daggerheart-spotlight-tracker",
   "title": "Daggerheart Spotlight Tracker",
   "description": "A GM tool to track how many times each player character has been spotlighted during a session. Automatically counts duality rolls (not reactions) and helps maintain balanced player engagement in Daggerheart games.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "MrJamela",
