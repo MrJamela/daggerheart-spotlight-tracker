@@ -29,12 +29,7 @@
     "scripts/spotlight-tracker.js"
   ],
   "styles": [],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
+  
   ],
   "url": "https://github.com/MrJamela/daggerheart-spotlight-tracker",
   "manifest": "https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest/download/module.json",
