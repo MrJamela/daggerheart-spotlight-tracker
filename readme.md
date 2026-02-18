@@ -29,7 +29,7 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 
 ### Method 2: Manual Installation
 
-1. Download the [latest release](https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest)
+1. Download the [latest release](https://github.com/yourusername/daggerheart-spotlight-tracker/releases/latest)
 2. Extract the zip file to your `Data/modules/` folder
 3. Restart Foundry VTT
 4. Enable the module in your Daggerheart world
@@ -38,17 +38,21 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 
 Use this URL in the "Install Module" dialog:
 ```
-https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest/download/module.json
+https://github.com/yourusername/daggerheart-spotlight-tracker/releases/latest/download/module.json
 ```
 
 ## Usage
 
 ### Opening the Tracker
 
-**Option 1: Keyboard Shortcut**
+**Option 1: UI Button (New!)**
+- Look for the **star icon** (⭐) at the bottom of the Token Controls (left sidebar)
+- Click it to open the tracker window
+
+**Option 2: Keyboard Shortcut**
 - Press `Shift + T` to open the tracker window
 
-**Option 2: Macro**
+**Option 3: Macro**
 1. Create a new Script macro
 2. Paste: `openSpotlightTracker();`
 3. Drag to your hotbar and click to open
@@ -120,8 +124,8 @@ Potential future features:
 
 ## Support
 
-- **Issues**: [Report bugs or request features](https://github.com/MrJamela/daggerheart-spotlight-tracker/issues)
-- **Discussions**: [Join the discussion](https://github.com/MrJamela/daggerheart-spotlight-tracker/discussions)
+- **Issues**: [Report bugs or request features](https://github.com/yourusername/daggerheart-spotlight-tracker/issues)
+- **Discussions**: [Join the discussion](https://github.com/yourusername/daggerheart-spotlight-tracker/discussions)
 
 ## Contributing
 
@@ -137,9 +141,13 @@ This module is licensed under the [MIT License](LICENSE).
 
 ## Credits
 
-- **Created by**: MrJamela - using ClaudeAI (Sonnet 4.5)
+- **Created by**: Jaime Matthew
 - **Daggerheart System**: [Foundryborne](https://github.com/Foundryborne/daggerheart)
 - **Daggerheart RPG**: © Darrington Press LLC
+
+## Development Credits
+
+Code and documentation developed with assistance from Claude AI (Anthropic). All functionality tested and verified in live Daggerheart gameplay.
 
 ## Disclaimer
 

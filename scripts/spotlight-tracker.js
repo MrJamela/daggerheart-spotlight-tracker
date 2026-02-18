@@ -1,56 +1,8 @@
-// Setup when Foundry is ready
-Hooks.once('ready', function() {
-  console.log('Daggerheart Spotlight Tracker | Ready');
-  
-  // Only show notification for GMs
-  if (!game.user.isGM) {
-    console.log('Daggerheart Spotlight Tracker | User is not GM');
-    return;
-  }
-  
-  // Test if hooks are working
-  console.log('Daggerheart Spotlight Tracker | Testing if createChatMessage hook is registered...');
-  console.log('Daggerheart Spotlight Tracker | Registered hooks:', Hooks.events.createChatMessage);
-  
-  // Show a notification about how to open it
-  ui.notifications.info('Spotlight Tracker loaded! Use macro or press Shift+T to open.');
-  
-  // Try to detect ALL possible hooks that might fire
-  console.log('Daggerheart Spotlight Tracker | Listening to ALL chat-related hooks for debugging...');
-});
-
-// AUTO-INCREMENT: Listen for duality dice rolls
-Hooks.on('createChatMessage', async (message, options, userId) => {
-  // Only run for GMs
-  if (!game.user.isGM) return;
-  
-  // Check if this is a duality roll (not a reaction)
-  if (message.type === 'dualityRoll') {
-    // Get the actor who made the roll
-    const actorId = message.speaker?.actor;
-    const actor = actorId ? game.actors.get(actorId) : null;
-    
-    if (actor && actor.type === 'character' && actor.hasPlayerOwner) {
-      // Increment the spotlight count
-      const counts = game.settings.get('daggerheart-spotlight-tracker', 'spotlightCounts');
-      counts[actor.id] = (counts[actor.id] || 0) + 1;
-      await game.settings.set('daggerheart-spotlight-tracker', 'spotlightCounts', counts);
-      
-      // Show a notification
-      ui.notifications.info(`${actor.name} spotlighted! (${counts[actor.id]} times this session)`);
-      
-      // If the tracker window is open, refresh it
-      const trackerApp = Object.values(ui.windows).find(app => app.id === 'spotlight-tracker');
-      if (trackerApp) {
-        trackerApp.render();
-      }
-    }
-  }
-});// ========================================
+// ========================================
 // DAGGERHEART SPOTLIGHT TRACKER MODULE
 // ========================================
-// This module helps GMs track how many times each player character
-// has been spotlighted during a session for balanced gameplay
+// Tracks player character spotlight time in Daggerheart sessions
+// Automatically counts duality rolls and provides GM interface
 
 console.log("Daggerheart Spotlight Tracker | Script loaded");
 
@@ -103,11 +55,79 @@ Hooks.once('ready', function() {
   if (!game.user.isGM) return;
   
   // Show a notification about how to open it
-  ui.notifications.info('Spotlight Tracker loaded! Press Shift+T to open.');
+  ui.notifications.info('Spotlight Tracker loaded! Press Shift+T or click the star icon to open.');
+});
+
+// Add Spotlight Tracker button to left sidebar (Token Controls)
+Hooks.on('renderSceneControls', (app, html, data) => {
+  if (!game.user.isGM) return;
+  
+  // Wrap html in jQuery if it's not already (Foundry v13 compatibility)
+  const $html = html instanceof jQuery ? html : $(html);
+  
+  // Find the tools menu in the Token controls
+  const toolsMenu = $html.find('#scene-controls-tools');
+  
+  if (toolsMenu.length === 0) return;
+  
+  // Remove existing button if it exists (clean slate)
+  toolsMenu.find('.spotlight-tracker-tool').remove();
+  
+  // Create container (li element)
+  const container = $('<li></li>');
+  
+  // Create button (matching token control style)
+  const button = $(`
+    <button type="button" 
+            class="control ui-control tool icon button fa-solid fa-star spotlight-tracker-tool" 
+            data-action="tool" 
+            data-tool="spotlight-tracker" 
+            aria-label="Spotlight Tracker" 
+            aria-pressed="false" 
+            data-tooltip="">
+    </button>
+  `);
+  
+  button.on('click', () => {
+    new SpotlightTracker().render(true);
+  });
+  
+  container.append(button);
+  
+  // Append to the end of the tools menu
+  toolsMenu.append(container);
+});
+
+// AUTO-INCREMENT: Listen for duality dice rolls
+Hooks.on('createChatMessage', async (message, options, userId) => {
+  // Only run for GMs
+  if (!game.user.isGM) return;
+  
+  // Check if this is a duality roll (not a reaction)
+  if (message.type === 'dualityRoll') {
+    // Get the actor who made the roll
+    const actorId = message.speaker?.actor;
+    const actor = actorId ? game.actors.get(actorId) : null;
+    
+    if (actor && actor.type === 'character' && actor.hasPlayerOwner) {
+      // Increment the spotlight count
+      const counts = game.settings.get('daggerheart-spotlight-tracker', 'spotlightCounts');
+      counts[actor.id] = (counts[actor.id] || 0) + 1;
+      await game.settings.set('daggerheart-spotlight-tracker', 'spotlightCounts', counts);
+      
+      // Show a notification
+      ui.notifications.info(`${actor.name} spotlighted! (${counts[actor.id]} times this session)`);
+      
+      // If the tracker window is open, refresh it
+      const trackerApp = Object.values(ui.windows).find(app => app.id === 'spotlight-tracker');
+      if (trackerApp) {
+        trackerApp.render();
+      }
+    }
+  }
 });
 
 // SPOTLIGHT TRACKER WINDOW CLASS
-// Using legacy Application class for maximum compatibility
 class SpotlightTracker extends Application {
   
   // Define window properties
