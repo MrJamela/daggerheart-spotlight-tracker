@@ -2,9 +2,10 @@
 
 A Foundry VTT module for GMs running Daggerheart games to track how many times each player character has been spotlighted during a session, helping maintain balanced player engagement.
 
+![Spotlight Tracker Screenshot](screenshots/screenshot.png)
 ![Foundry Version](https://img.shields.io/badge/Foundry-v12%20--%20v13-green)
 ![System](https://img.shields.io/badge/System-Daggerheart-blue)
-![Latest Release](https://img.shields.io/github/v/release/yourusername/daggerheart-spotlight-tracker)
+![Latest Release](https://img.shields.io/github/v/release/MrJamela/daggerheart-spotlight-tracker)
 
 ## Features
 
@@ -17,6 +18,7 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 - 🎮 **GM Only**: All tracking is visible only to the GM
 - ⌨️ **Keyboard Shortcut**: Press Shift+T to quickly open the tracker
 - 💾 **Persistent Storage**: Counts are saved and persist between sessions until manually reset
+- ⭐ **UI Button**: Button on the left panel interface
 
 ## Installation
 
@@ -45,10 +47,14 @@ https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest/downlo
 
 ### Opening the Tracker
 
-**Option 1: Keyboard Shortcut**
+**Option 1: UI Button (New!)**
+- Look for the **star icon** (⭐) at the bottom of the Token Controls (left sidebar)
+- Click it to open the tracker window
+
+**Option 2: Keyboard Shortcut**
 - Press `Shift + T` to open the tracker window
 
-**Option 2: Macro**
+**Option 3: Macro**
 1. Create a new Script macro
 2. Paste: `openSpotlightTracker();`
 3. Drag to your hotbar and click to open
@@ -137,9 +143,13 @@ This module is licensed under the [MIT License](LICENSE).
 
 ## Credits
 
-- **Created by**: MrJamela - using ClaudeAI (Sonnet 4.5)
+- **Created by**: Jaime Matthew
 - **Daggerheart System**: [Foundryborne](https://github.com/Foundryborne/daggerheart)
 - **Daggerheart RPG**: © Darrington Press LLC
+
+## Development Credits
+
+Code and documentation developed with assistance from Claude AI (Anthropic). All functionality tested and verified in live Daggerheart gameplay.
 
 ## Disclaimer
 

@@ -106,6 +106,46 @@ Hooks.once('ready', function() {
   ui.notifications.info('Spotlight Tracker loaded! Press Shift+T to open.');
 });
 
+// Add Spotlight Tracker button to left sidebar (Token Controls)
+Hooks.on('renderSceneControls', (app, html, data) => {
+  if (!game.user.isGM) return;
+  
+  // Wrap html in jQuery if it's not already (Foundry v13 compatibility)
+  const $html = html instanceof jQuery ? html : $(html);
+  
+  // Find the tools menu in the Token controls
+  const toolsMenu = $html.find('#scene-controls-tools');
+  
+  if (toolsMenu.length === 0) return;
+  
+  // Remove existing button if it exists (clean slate)
+  toolsMenu.find('.spotlight-tracker-tool').remove();
+  
+  // Create container (li element)
+  const container = $('<li></li>');
+  
+  // Create button (matching token control style)
+  const button = $(`
+    <button type="button" 
+            class="control ui-control tool icon button fa-solid fa-star spotlight-tracker-tool" 
+            data-action="tool" 
+            data-tool="spotlight-tracker" 
+            aria-label="Spotlight Tracker" 
+            aria-pressed="false" 
+            data-tooltip="">
+    </button>
+  `);
+  
+  button.on('click', () => {
+    new SpotlightTracker().render(true);
+  });
+  
+  container.append(button);
+  
+  // Append to the end of the tools menu
+  toolsMenu.append(container);
+});
+
 // SPOTLIGHT TRACKER WINDOW CLASS
 // Using legacy Application class for maximum compatibility
 class SpotlightTracker extends Application {
