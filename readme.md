@@ -2,9 +2,10 @@
 
 A Foundry VTT module for GMs running Daggerheart games to track how many times each player character has been spotlighted during a session, helping maintain balanced player engagement.
 
+![Spotlight Tracker Screenshot](screenshots/screenshot.png)
 ![Foundry Version](https://img.shields.io/badge/Foundry-v12%20--%20v13-green)
 ![System](https://img.shields.io/badge/System-Daggerheart-blue)
-![Latest Release](https://img.shields.io/github/v/release/yourusername/daggerheart-spotlight-tracker)
+![Latest Release](https://img.shields.io/github/v/release/MrJamela/daggerheart-spotlight-tracker)
 
 ## Features
 
@@ -17,6 +18,7 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 - 🎮 **GM Only**: All tracking is visible only to the GM
 - ⌨️ **Keyboard Shortcut**: Press Shift+T to quickly open the tracker
 - 💾 **Persistent Storage**: Counts are saved and persist between sessions until manually reset
+- ⭐ **UI Button**: Button on the left panel interface
 
 ## Installation
 
@@ -29,7 +31,7 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 
 ### Method 2: Manual Installation
 
-1. Download the [latest release](https://github.com/yourusername/daggerheart-spotlight-tracker/releases/latest)
+1. Download the [latest release](https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest)
 2. Extract the zip file to your `Data/modules/` folder
 3. Restart Foundry VTT
 4. Enable the module in your Daggerheart world
@@ -38,7 +40,7 @@ A Foundry VTT module for GMs running Daggerheart games to track how many times e
 
 Use this URL in the "Install Module" dialog:
 ```
-https://github.com/yourusername/daggerheart-spotlight-tracker/releases/latest/download/module.json
+https://github.com/MrJamela/daggerheart-spotlight-tracker/releases/latest/download/module.json
 ```
 
 ## Usage
@@ -124,8 +126,8 @@ Potential future features:
 
 ## Support
 
-- **Issues**: [Report bugs or request features](https://github.com/yourusername/daggerheart-spotlight-tracker/issues)
-- **Discussions**: [Join the discussion](https://github.com/yourusername/daggerheart-spotlight-tracker/discussions)
+- **Issues**: [Report bugs or request features](https://github.com/MrJamela/daggerheart-spotlight-tracker/issues)
+- **Discussions**: [Join the discussion](https://github.com/MrJamela/daggerheart-spotlight-tracker/discussions)
 
 ## Contributing
 
